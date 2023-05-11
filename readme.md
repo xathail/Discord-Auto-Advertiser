@@ -13,6 +13,7 @@
 
 ## Features
 > + Auto Advertiser
+> + Token checker = know if your token is valid
 > + Customisable time between messages
 > + Unlimited channel IDs
 > + Built-in status / custom status changer
