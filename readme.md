@@ -20,6 +20,7 @@
 > + Requests based = fast
 > + Linux & Windows support
 > + Auto DM Responder
+> + Webhook logging
 
 ## How To Use Emojis
 > + For default emojis, you can just use :emojiname: e.g `:white_check_mark:`
