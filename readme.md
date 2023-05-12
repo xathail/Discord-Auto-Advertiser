@@ -20,8 +20,9 @@
 > + Built-in onliner
 > + Requests based = fast
 > + Linux & Windows support
-> + Auto DM Responder
-> + Webhook logging
+> + Auto DM responder (Way More Improved)
+> + Webhook logging (Supports Pings)
+> + Messages sent tracker
 
 ## How To Use Emojis
 > + For default emojis, you can just use :emojiname: e.g `:white_check_mark:`
