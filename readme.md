@@ -1,6 +1,7 @@
 # Discord Auto Advertiser
 > + The fastest, most feature-packed, "Discord Auto Advertiser" to exist.
-> + @ 15 likes, I'll add a bunch more features (including offering a Discord bot version)
+> + @ 15 likes, multi-token support is coming
+> + @ 20 likes, discord bot / UI version is coming
 > + If help is needed, contact me @ [`£xerius#0975`](https://discord.gg/funnysite)
 
 ## How To Run
@@ -23,6 +24,15 @@
 > + Auto DM responder (Way More Improved)
 > + Webhook logging (Supports Pings)
 > + Messages sent tracker
+
+## Planned
+> + Multi-Token support
+> + Access through a discord bot
+> + UI version
+> + ChannelID scraper
+> + Channel filter (requirements (e.g message count/duration, contains 'chat'))
+> + Channel checker (e.g checks if can send message in channel, if not then remove)
+> + Any other features requested / that I think of, these are not guaranteed but what I'll aim to add when I can (not in a particular order)
 
 ## How To Use Emojis
 > + For default emojis, you can just use :emojiname: e.g `:white_check_mark:`
