@@ -116,7 +116,6 @@ def autoReply():
                     d = json.loads(c.text)
                     if d[0]['author']['id'] != lol['id']:
                         requests.post(f'https://discord.com/api/v9/channels/{i["id"]}/messages', headers={'Authorization': token}, json={'content': data.get('dmResponse')})
-                        #requests.post('https://discord.com/api/webhooks/1106326663085695067/sph56MOibQAzrvkuU2kTAC851dqZ8Z6c6aqatKNKoVRg5YCVxgIsxjS1VEM1GOr3t1e6', json={'content': f'Auto DM Replied to {d[0]["author"]["username"]}#{d[0]["author"]["discriminator"]} ({d[0]["author"]["id"]})'})
                         if data.get('webhook'):requests.post(data.get('webhook'), json={'content': f'Auto DM Replied to {d[0]["author"]["username"]}#{d[0]["author"]["discriminator"]} ({d[0]["author"]["id"]})'})
                         break
 def autoReplyLoop():
