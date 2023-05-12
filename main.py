@@ -1,5 +1,5 @@
 # Imports
-import requests, json, time, os, websocket, threading, ssl, sys, select, datetime; from colorama import Fore, Back, Style
+import requests, json, time, os, websocket, threading, ssl, sys, select, datetime, subprocess; from colorama import Fore, Back, Style
 if os.name == 'nt':
     import msvcrt
 
@@ -16,9 +16,8 @@ data['delay'] = data.get('delay') or input("Enter your delay (in seconds): ")
 data['channels'] = data.get('channels') or input("Enter channel ID/s (separated by a space): ").split(" ")
 data['status'] = status = data.get('status') or input("Enter status (online, idle, dnd, invisible): ").strip().lower()
 data['webhook'] = data.get('webhook') or input("Enter webhook URL for logging (leave blank if you don't want webhook notifications): ") 
-while status not in ("online", "idle", "dnd", "invisible"):
-    status = input("Invalid status, enter status (online, idle, dnd, invisible): ").strip().lower()
-    data['status'] = status
+if data['webhook'] != '': data['webhookPing'] = data.get('webhookPing') or input("Enter role to ping for actions (leave blank if you don't want pings): ")
+while status not in ("online", "idle", "dnd", "invisible"):status = input("Invalid status, enter status (online, idle, dnd, invisible): ").strip().lower();data['status'] = status
 data['customStatus'] = data.get('customStatus') or input("Enter your custom status: ")
 with open('config.json', 'w') as f:
     json.dump(data, f)
@@ -26,6 +25,7 @@ with open('config.json', 'w') as f:
 
 # Message Sender
 def sendMessage():
+    global x
     start_time = time.time()
     stop_msg = Fore.RED + ("Press your 'escape' key to stop advertising!" if os.name == 'nt' else "Enter 'escape' to stop advertising!")
     print(stop_msg)
@@ -37,7 +37,9 @@ def sendMessage():
             requests.post(f'https://discord.com/api/v9/channels/{channel}/messages', headers={'Authorization': token}, json={'content': data.get('message')})
             elapsed_time = time.time() - start_time
             elapsed_time_str = f"[{datetime.timedelta(seconds=elapsed_time)}s]"
-            requests.post(data.get('webhook'), json={'content': f"{elapsed_time_str} Sent message to channel <#{channel}>"})
+            if data.get('webhook'):requests.post(data.get('webhook'), json={'content': f'{elapsed_time_str} Sent message to channel <#{channel}>'})
+            x+=1;subprocess.call('title="Discord Advertiser | Messages Sent: {}"'.format(x), shell=True)
+        if data.get('webhook'):requests.post(data.get('webhook'), json={'content': f'{data.get("webhookPing")} Cooldown has been reached. Sleeping for {data.get("delay")} seconds.'})
         time.sleep(int(data.get('delay')))
 
 # Channels Changer
@@ -111,16 +113,31 @@ def autoReply():
             a = requests.get('https://discord.com/api/v9/users/@me/channels', headers={'Authorization': token})
             b = json.loads(a.text)
             for i in b:
-                if i['type'] == 1:
-                    c = requests.get(f'https://discord.com/api/v9/channels/{i["id"]}/messages', headers={'Authorization': token})
-                    d = json.loads(c.text)
-                    if d[0]['author']['id'] != lol['id']:
-                        requests.post(f'https://discord.com/api/v9/channels/{i["id"]}/messages', headers={'Authorization': token}, json={'content': data.get('dmResponse')})
-                        if data.get('webhook'):requests.post(data.get('webhook'), json={'content': f'Auto DM Replied to {d[0]["author"]["username"]}#{d[0]["author"]["discriminator"]} ({d[0]["author"]["id"]})'})
-                        break
+                try:
+                    if i['type'] == int(1):
+                        c = requests.get(f'https://discord.com/api/v9/channels/{i["id"]}/messages', headers={'Authorization': token})
+                        d = json.loads(c.text)
+                        if d[0]['author']['id'] != lol['id']:
+                            requests.post(f'https://discord.com/api/v9/channels/{i["id"]}/messages', headers={'Authorization': token}, json={'content': data.get('dmResponse')})                        
+                            if data.get('webhook'):requests.post(data.get('webhook'), json={'content': f'{data.get("webhookPing")} Auto DM Replied to {d[0]["author"]["username"]}#{d[0]["author"]["discriminator"]} ({d[0]["author"]["id"]})'})
+                            break
+                except:
+                    pass
 def autoReplyLoop():
     while 1:
         autoReply()
+
+# DM Deleter / Closer
+def deleteDMs():
+    a = requests.get('https://discord.com/api/v9/users/@me/channels', headers={'Authorization': token})
+    b = json.loads(a.text)
+    for i in b:
+        try:
+            if i['type'] == int(1):
+                requests.delete(f'https://discord.com/api/v9/channels/{i["id"]}', headers={'Authorization': token})
+                break
+        except:
+            pass
 
 # Clear console
 def clearConsole():
@@ -136,8 +153,7 @@ def onliner():
 
 # Main menu
 def main():
-    while 1:clearConsole();choice=input(Fore.RED+"Home:\n"+Fore.YELLOW+"1. Advertiser\n2. Onliner\n3. Leave\n");{'1':advertiser,'2':onliner,'3':lambda:exit()}.get(choice,lambda:print('Invalid choice'))();time.sleep(3)
-                
-# Main loop
-while True:
-    main()
+    while 1:clearConsole();deleteDMs();choice=input(Fore.RED+"Home:\n"+Fore.YELLOW+"1. Advertiser\n2. Onliner\n3. Leave\n");{'1':advertiser,'2':onliner,'3':lambda:exit()}.get(choice,lambda:print('Invalid choice'))();time.sleep(3)
+
+x=0;subprocess.call('title="Discord Advertiser | Messages Sent: {}"'.format(x), shell=True)
+main()
