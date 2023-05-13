@@ -1,7 +1,6 @@
 # Discord Auto Advertiser
 > + The fastest, most feature-packed, "Discord Auto Advertiser" to exist.
-> + @ 15 likes, multi-token support is coming
-> + @ 20 likes, discord bot / UI version is coming
+> + Development temporarily on hold due to exams.
 > + If help is needed, contact me @ [`£xerius#0975`](https://discord.gg/funnysite)
 
 ## How To Run
