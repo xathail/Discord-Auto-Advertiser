@@ -10,7 +10,7 @@ token = data.get('token') or input("Enter your token: ").replace('"', '').replac
 while requests.get('https://discord.com/api/v9/users/@me', headers={'Authorization': token}).status_code != 200:
     token = input("Invalid token, enter your token: ").replace('"', '').replace("'","")
 data['token'] = token
-data['message'] = data.get('message') or input("Enter message: ")
+data['message'] = data.get('message') or input("Enter message: ").replace('\\n','\n')
 data['dmResponse'] = data.get('dmResponse') or input("Enter DM Autoresponse: ")
 data['delay'] = data.get('delay') or input("Enter your delay (in seconds): ")
 data['channels'] = data.get('channels') or input("Enter channel ID/s (separated by a space): ").split(" ")
