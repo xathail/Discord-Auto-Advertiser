@@ -11,7 +11,7 @@ while requests.get('https://discord.com/api/v9/users/@me', headers={'Authorizati
     token = input("Invalid token, enter your token: ").replace('"', '').replace("'","")
 data['token'] = token
 data['message'] = data.get('message') or input("Enter message: ").replace('\\n','\n')
-data['dmResponse'] = data.get('dmResponse') or input("Enter DM Autoresponse: ")
+data['dmResponse'] = data.get('dmResponse') or input("Enter DM Autoresponse: ").replace('\\n','\n')
 data['delay'] = data.get('delay') or input("Enter your delay (in seconds): ")
 data['channels'] = data.get('channels') or input("Enter channel ID/s (separated by a space): ").split(" ")
 data['status'] = status = data.get('status') or input("Enter status (online, idle, dnd, invisible): ").strip().lower()
