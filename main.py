@@ -1,5 +1,5 @@
 # Imports
-import requests, json, time, os, websocket, threading, ssl, sys, select, datetime, subprocess; from colorama import Fore, Back, Style
+import requests, json, time, os, websocket, threading, ssl, sys, select, datetime, subprocess, random; from colorama import Fore, Back, Style
 if os.name == 'nt':
     import msvcrt
 
@@ -19,6 +19,8 @@ data['webhook'] = data.get('webhook') or input("Enter webhook URL for logging (l
 if data['webhook'] != '': data['webhookPing'] = data.get('webhookPing') or input("Enter role to ping for actions (leave blank if you don't want pings): ")
 while status not in ("online", "idle", "dnd", "invisible"):status = input("Invalid status, enter status (online, idle, dnd, invisible): ").strip().lower();data['status'] = status
 data['customStatus'] = data.get('customStatus') or input("Enter your custom status: ")
+data['repeatBypass'] = data.get('repeatBypass') or input("Enable message repeat bypass? (y/n): ").strip().lower()
+while data['repeatBypass'] not in ("y", "n"):data['repeatBypass'] = input("Invalid choice, enable message repeat bypass? (y/n): ").strip().lower()
 with open('config.json', 'w') as f:
     json.dump(data, f)
     f.close()
@@ -34,7 +36,11 @@ def sendMessage():
             break
         channels = data.get('channels')
         for channel in channels:
-            requests.post(f'https://discord.com/api/v9/channels/{channel}/messages', headers={'Authorization': token}, json={'content': data.get('message')})
+            if data.get('repeatBypass') == 'y':
+                repeatBypass = str(random.randint(752491546761342621526, 7834345876325483756245232875362457316274977135724691581387))
+                requests.post(f'https://discord.com/api/v9/channels/{channel}/messages', headers={'Authorization': token}, json={'content': data.get('message')+'\n\n'+repeatBypass})
+            else:
+                requests.post(f'https://discord.com/api/v9/channels/{channel}/messages', headers={'Authorization': token}, json={'content': data.get('message')})
             elapsed_time = time.time() - start_time
             elapsed_time_str = f"[{datetime.timedelta(seconds=elapsed_time)}s]"
             if data.get('webhook'):requests.post(data.get('webhook'), json={'content': f'{elapsed_time_str} Sent message to channel <#{channel}>'})

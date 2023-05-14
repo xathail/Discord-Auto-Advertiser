@@ -23,6 +23,7 @@
 > + Auto DM responder (Way More Improved)
 > + Webhook logging (Supports Pings)
 > + Messages sent tracker
+> + Repeat Bypass
 
 ## Planned
 > + Multi-Token support
