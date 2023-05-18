@@ -1,6 +1,6 @@
 # Discord Auto Advertiser
 > + The fastest, most feature-packed, "Discord Auto Advertiser" to exist.
-> + Development temporarily on hold due to exams.
+> + UI basically ready, will launch at **20** Stars
 > + If help is needed, contact me @ [`£xerius#0975`](https://discord.gg/funnysite)
 
 ## How To Run
