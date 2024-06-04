@@ -1,1 +1,12 @@
-{"token": "", "message": "", "channels": "", "delay": "", "status": "", "customStatus": "", "dmResponse": "", "webhook": "", "webhookPing": "", "repeatBypass": ""}
+{
+    "token": "",
+    "message": "",
+    "channels": "",
+    "delay": "",
+    "status": "",
+    "customStatus": "",
+    "dmResponse": "",
+    "webhook": "",
+    "webhookPing": "",
+    "repeatBypass": ""
+}

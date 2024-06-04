@@ -1,7 +1,5 @@
 # Discord Auto Advertiser
 > + The fastest, most feature-packed, "Discord Auto Advertiser" to exist.
-> + UI basically ready, didn't think I'd hit this milestone so fast lol, will release when exams are over
-> + If help is needed, contact me @ [`£xerius#4516`](https://discord.gg/funnysite)
 
 ## How To Run
 > 1) Clone / download this repository
@@ -26,13 +24,14 @@
 > + Repeat Bypass
 
 ## Planned
-> + Multi-Token support
-> + Access through a discord bot
-> + UI version
-> + ChannelID scraper
-> + Channel filter (requirements (e.g message count/duration, contains 'chat'))
-> + Channel checker (e.g checks if can send message in channel, if not then remove)
-> + Any other features requested / that I think of, these are not guaranteed but what I'll aim to add when I can (not in a particular order)
+> + [Soon] UI version
+> + [Soon] Channel checker (e.g checks if can send message in channel, if not then remove)
+> + [Soon] Migrate to Discord API v10
+> + [Undecided] Multi-Token support?
+> + [Undecided] Access through a discord bot
+> + [Undecided] ChannelID scraper
+> + [Undecided] Channel filter (requirements (e.g message count/duration, contains 'chat'))
+> + [Suggest] Feel free to make suggestions! Just open an issue.
 
 ## How To Use Emojis
 > + For default emojis, you can just use :emojiname: e.g `:white_check_mark:`
@@ -40,8 +39,4 @@
 
 ## How To Write With Multiple Lines
 > + In the message, replace each new line with `\n`
-> + As an example, `"**Checkout Our Store**\n*It Is Very Cool*\n\nhttp://boosts.lol"`
-
-
-## To Skids
-> + If you're going to skid, at least leave a star for my efforts.
+> + As an example, `"**Check out this site**\n*It Is Very Cool*\n\nhttp://bigrat.monster"`
