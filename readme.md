@@ -14,23 +14,22 @@
 > + Token checker = know if your token is valid
 > + Customisable time between messages
 > + Unlimited channel IDs
-> + Built-in status / custom status changer
+> + Built-in status / custom status changer (untested if working)
 > + Built-in onliner
 > + Requests based = fast
 > + Linux & Windows support
 > + Auto DM responder (Way More Improved)
 > + Webhook logging (Supports Pings)
 > + Messages sent tracker
-> + Repeat Bypass
+> + Repeat Bypass (shitty)
+> + Windows UI (shitty)
+> + Latest API Version
 
 ## Planned
-> + [Soon] UI version
 > + [Soon] Channel checker (e.g checks if can send message in channel, if not then remove)
-> + [Soon] Migrate to Discord API v10
-> + [Undecided] Multi-Token support?
-> + [Undecided] Access through a discord bot
-> + [Undecided] ChannelID scraper
-> + [Undecided] Channel filter (requirements (e.g message count/duration, contains 'chat'))
+> + [Soon] Recode both CLI & UI versions
+> + [Soon] Reimplement onliner
+> + [Undecided] Channel filter (e.g auto finds channels with keywords e.g 'advertise'))
 > + [Suggest] Feel free to make suggestions! Just open an issue.
 
 ## How To Use Emojis
