@@ -7,7 +7,7 @@ if os.name == 'nt':
 with open('config.json') as f:
     data = json.load(f)
 token = data.get('token') or input("Enter your token: ").replace('"', '').replace("'","")
-while requests.get('https://discord.com/api/v9/users/@me', headers={'Authorization': token}).status_code != 200:
+while requests.get('https://discord.com/api/v10/users/@me', headers={'Authorization': token}).status_code != 200:
     token = input("Invalid token, enter your token: ").replace('"', '').replace("'","")
 data['token'] = token
 data['message'] = data.get('message') or input("Enter message: ").replace('\\n','\n')
@@ -38,9 +38,9 @@ def sendMessage():
         for channel in channels:
             if data.get('repeatBypass') == 'y':
                 repeatBypass = str(random.randint(752491546761342621526, 7834345876325483756245232875362457316274977135724691581387))
-                requests.post(f'https://discord.com/api/v9/channels/{channel}/messages', headers={'Authorization': token}, json={'content': data.get('message')+'\n\n'+repeatBypass})
+                requests.post(f'https://discord.com/api/v10/channels/{channel}/messages', headers={'Authorization': token}, json={'content': data.get('message')+'\n\n'+repeatBypass})
             else:
-                requests.post(f'https://discord.com/api/v9/channels/{channel}/messages', headers={'Authorization': token}, json={'content': data.get('message')})
+                requests.post(f'https://discord.com/api/v10/channels/{channel}/messages', headers={'Authorization': token}, json={'content': data.get('message')})
             elapsed_time = time.time() - start_time
             elapsed_time_str = f"[{datetime.timedelta(seconds=elapsed_time)}s]"
             if data.get('webhook'):requests.post(data.get('webhook'), json={'content': f'{elapsed_time_str} Sent message to channel <#{channel}>'})
@@ -112,19 +112,19 @@ def online():
 
 # Auto DM Reply
 def autoReply():
-    check = requests.get('https://discord.com/api/v9/users/@me', headers={'Authorization': token})
+    check = requests.get('https://discord.com/api/v10/users/@me', headers={'Authorization': token})
     if check.status_code == 200:
         lol = json.loads(check.text)
         if lol['id'] != '0':
-            a = requests.get('https://discord.com/api/v9/users/@me/channels', headers={'Authorization': token})
+            a = requests.get('https://discord.com/api/v10/users/@me/channels', headers={'Authorization': token})
             b = json.loads(a.text)
             for i in b:
                 try:
                     if i['type'] == int(1):
-                        c = requests.get(f'https://discord.com/api/v9/channels/{i["id"]}/messages', headers={'Authorization': token})
+                        c = requests.get(f'https://discord.com/api/v10/channels/{i["id"]}/messages', headers={'Authorization': token})
                         d = json.loads(c.text)
                         if d[0]['author']['id'] != lol['id']:
-                            requests.post(f'https://discord.com/api/v9/channels/{i["id"]}/messages', headers={'Authorization': token}, json={'content': data.get('dmResponse')})                        
+                            requests.post(f'https://discord.com/api/v10/channels/{i["id"]}/messages', headers={'Authorization': token}, json={'content': data.get('dmResponse')})                        
                             if data.get('webhook'):requests.post(data.get('webhook'), json={'content': f'{data.get("webhookPing")} Auto DM Replied to {d[0]["author"]["username"]}#{d[0]["author"]["discriminator"]} ({d[0]["author"]["id"]})'})
                             break
                 except:
@@ -135,12 +135,12 @@ def autoReplyLoop():
 
 # DM Deleter / Closer
 def deleteDMs():
-    a = requests.get('https://discord.com/api/v9/users/@me/channels', headers={'Authorization': token})
+    a = requests.get('https://discord.com/api/v10/users/@me/channels', headers={'Authorization': token})
     b = json.loads(a.text)
     for i in b:
         try:
             if i['type'] == int(1):
-                requests.delete(f'https://discord.com/api/v9/channels/{i["id"]}', headers={'Authorization': token})
+                requests.delete(f'https://discord.com/api/v10/channels/{i["id"]}', headers={'Authorization': token})
                 break
         except:
             pass
