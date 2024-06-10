@@ -14,15 +14,14 @@
 > + Token checker = know if your token is valid
 > + Customisable time between messages
 > + Unlimited channel IDs
-> + Built-in status / custom status changer (untested if working)
-> + Built-in onliner
 > + Requests based = fast
 > + Linux & Windows support
-> + Auto DM responder (Way More Improved)
-> + Webhook logging (Supports Pings)
+> + Auto DM responder
 > + Messages sent tracker
+> + Webhook logging (with ping support)
 > + Repeat Bypass (shitty)
 > + Windows UI (shitty)
+> + Built-in onliner (shitty) with status changer (shitty)
 > + Latest API Version
 
 ## Planned
